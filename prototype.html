@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://cdn.bootcss.com/prototype/1.7.3/prototype.js"></script>
+<script>
+/*
+  看上去跟JQuery不是一个模式，一个像是顺序，prototype更像是插件式的  = =
+ */
+function myFunction(){
+	$("h01").writeAttribute("style","color:red").insert("Hello Prototype!");
+}
+Event.observe(window,"load",myFunction);
+</script>
+</head>
+
+<body>
+<h1 id="h01"></h1>
+</body>
+</html>
