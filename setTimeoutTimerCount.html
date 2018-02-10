@@ -1,0 +1,57 @@
+<html>
+<head>
+<script type="text/javascript">
+	/*
+	 *Javascript设置要保留的小数位数，四舍五入。
+	 *js 四舍五入函数 toFixed（），里面的参数 就是保留小数的位数。
+	 *document.write("两位小数点:"+a.toFixed(2)+"<br>四位小数点"+a.toFixed(4));  
+	 *
+     *setTimeout("",);//第一个参数一定要加引号。要不然成了即时调用函数了哈哈
+	 *
+     */ 
+
+var c=0;
+var countNum=1;//计次
+var t;
+//开始计时函数
+function timedCount()
+{
+	document.getElementById('txt').value=c.toFixed(2);
+	c=c+0.01;
+	c.toFixed(2);
+	t=setTimeout("timedCount()",10);
+	document.getElementById("startTime").disabled = "disabled";
+}
+
+//计次函数
+function count()
+{
+	document.getElementById('count').innerHTML+="<br>" + countNum + ": " + c.toFixed(2) ;
+	countNum++;
+}
+
+//停止计时函数
+function stopCount()
+{
+	c=0;
+	setTimeout("document.getElementById('txt').value=0",0);
+	clearTimeout(t);
+	document.getElementById("startTime").disabled = "";
+}
+</script>
+</head>
+
+<body>
+
+<form>
+<input id="startTime" type="button" value="开始计时！" onClick="timedCount()">
+<input type="text" id="txt">
+<input type="button" value="计次！" onClick="count()">
+<input type="button" value="停止计时！" onClick="stopCount()" color="red">
+</form>
+
+<p id="count">计次:</p>
+
+</body>
+
+</html>
