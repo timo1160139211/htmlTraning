@@ -1,0 +1,34 @@
+<html>
+<head>
+<script type="text/javascript">
+var second = 1;//用于显示的秒数+1
+var minute = 0;//用于显示的分钟+1
+function timedCount()
+{
+    document.getElementById('secondText').value=second;//改变值
+    second++;
+    setTimeout("timedCount()",1000);//每秒调用自身，再次定1秒的时，实现循环。
+    if(second == 60){minute++;second=1;
+        document.getElementById('minuteText').value=minute;
+    }
+}
+</script>
+</head>
+
+<body>
+
+<form>
+    <p>分钟:
+         <input type="text" id="minuteText">
+    </p>
+    <p>秒钟:
+        <input type="text" id="secondText">
+    </p>
+<input type="button" value="开始计时！" onClick="timedCount()">
+</form>
+
+
+
+</body>
+
+</html>
