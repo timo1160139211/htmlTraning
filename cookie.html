@@ -1,0 +1,50 @@
+<html>
+<head>
+<script type="text/javascript">
+/*
+ *
+ *
+ */
+ 
+//从cookie中取出username值,参数c_name是属性名
+function getCookie(c_name){
+	if (document.cookie.length > 0){ //检查有没有cookie
+		c_start = document.cookie.indexOf(c_name + "=");//第一次出现 c_name=的地方。(位置)
+		if (c_start != -1){ //如果存在 (不存在返回-1)
+			c_start = c_start + c_name.length + 1;//值出现的开始位置
+			c_end = document.cookie.indexOf(";",c_start);//值出现的结束位置
+			if (c_end == -1){
+				c_end = document.cookie.length;//检查一下有没有';'存在
+			}
+			return unescape(document.cookie.substring(c_start,c_end));//把截取的字符串 解码 一下返回。
+		} 
+	}
+	return "";
+}
+
+//保存到cookie,参数c_name是属性名，value是c_name属性的值，expiredays是要设置的有效时间
+function setCookie(c_name,value,expiredays){
+	var exdate = new Date();//获取当前日期
+	exdate.setDate(exdate.getDate() + expiredays);//向后设置expiredays天
+	document.cookie =  c_name + "=" + escape(value) + (
+		    (expiredays == null) ? "" : "; expires=" + exdate.toGMTString()
+		);//生成cookie, escape(str)用来编码str, toGMTString() 方法可根据格林威治时间 (GMT) 把 Date 对象转换为字符串，并返回结果。
+}
+
+//主函数
+function checkCookie(){
+	username = getCookie('username');//第一步去cookie拿到username后的值
+    if (username != null && username != ""){
+		alert('Welcome again ' + username + '!');//如果值不为空，显示欢迎OK
+	}else{
+		username = prompt('Please enter your name:',"");//否则，说明还未加入cookie，呼出prompt框填入(也可以在 input中填入)
+		if (username != null && username != ""){
+			setCookie('username',username,365);//设置(保存到)cookie
+		}
+	}
+}
+</script>
+</head>
+<body onLoad="checkCookie()">
+</body>
+</html>
