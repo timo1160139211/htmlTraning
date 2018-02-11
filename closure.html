@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>W3Cschool教程(w3cschool.cn)</title>
+</head>
+
+<!--    //1
+<body>
+
+<p>局部变量计数。</p>
+<button type="button" onclick="myFunction()">计数!</button>
+<p id="demo">0</p>
+<script>
+var add = (function () {
+    var counter = 0;
+    return function () {return counter += 1;}
+})();
+function myFunction(){
+    document.getElementById("demo").innerHTML = add();
+}
+ </script>
+</body>
+-->
+
+
+<!--    并不能调用本身的name,因为this.name指向的还是全局变量的name.  没有关系到闭包，只是this的理解
+<body>
+<script>
+var name = "The Window";
+var object = {
+    name : "My object",
+	getName : function(){
+		return function(){
+			return this.name;
+		};
+	}
+};
+
+alert(object.getName()());
+</script>
+</body>
+-->
+
+<!--    //并不能调用本身的name,因为this.name指向的还是全局变量的name.  没有关系到闭包，只是this的理解
+<body>
+<script>
+var name = "The Window";
+var object = {
+    name : "My object",
+	getName : function(){
+    	return function(){
+			var that = this;
+			return that.name;
+		};
+	}
+};
+
+alert(object.getName()());
+</script>
+</body>
+-->
+
+
+<body>
+<script>
+var name = "The Window";
+var object = {
+    name : "My object",
+	getName : function(){
+		var that = this;
+    	return function(){
+			return that.name;
+		};
+	}
+};
+
+alert(object.getName()());
+</script>
+</body>
+</html>
